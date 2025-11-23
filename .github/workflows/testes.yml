@@ -15,7 +15,7 @@ jobs:
     - name: Configurar Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.10' # Especifique a versão do Python desejada
+        python-version: '3.11' # Especifique a versão do Python desejada
 
     - name: Instalar dependências
       run: |
