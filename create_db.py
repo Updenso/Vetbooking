@@ -9,7 +9,7 @@ def create_database():
         conn = mysql.connector.connect(
             host='localhost',
             user='root',
-            password='usuario'
+            password='root@123'
         )
         cursor = conn.cursor()
         
@@ -32,7 +32,7 @@ def create_database():
         conn = mysql.connector.connect(
             host='localhost',
             user='root',
-            password='usuario',
+            password='root@123',
             database='vetbooking'
         )
         cursor = conn.cursor()
@@ -250,7 +250,7 @@ def check_database_connection():
         conn = mysql.connector.connect(
             host='localhost',
             user='root',
-            password='usuario',
+            password='root@123',
             database='vetbooking'
         )
         cursor = conn.cursor()

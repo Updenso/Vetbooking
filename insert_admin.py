@@ -10,7 +10,7 @@ def insert_admin_user():
         conn = mysql.connector.connect(
             host='localhost',
             user='root',
-            password='usuario',
+            password='root@123',
             database='vetbooking'
         )
         cursor = conn.cursor()

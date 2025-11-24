@@ -25,13 +25,22 @@ os.makedirs('static/uploads/pets', exist_ok=True)
 os.makedirs('static/uploads/medicos', exist_ok=True) # Alterado para 'medicos'
 os.makedirs('static/uploads/documentos', exist_ok=True)
 
+
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'user_id' not in session:
+            return jsonify({"error": "Unauthorized"}), 403
+        return f(*args, **kwargs)
+    return decorated_function
+
 # --- BANCO DE DADOS ---
 
 def get_db_connection():
     conn = mysql.connector.connect(
         host='localhost',
         user='root',
-        password='usuario',
+        password='root@123',
         database='vetbooking'
     )
     return conn
@@ -237,6 +246,11 @@ def dashboard():
         conn.close()
     
     return render_template('pages/dashboard.html', **data)
+
+@app.route('/editar-perfil.html')
+@login_required
+def editar_perfil():
+    return app.send_static_file('pages/editar-perfil.html')
 
 # --- CADASTROS ---
 
