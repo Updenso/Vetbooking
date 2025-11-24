@@ -15,10 +15,10 @@ jobs:
     env:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: vetbooking
-    ports:
-       - 3306:3306
-    options: >-
-      --health-cmd="mysqladmin ping --silent"
+      ports:
+        -- 3306:3306
+      options: >-
+        --health-cmd="mysqladmin ping --silent"
       
     steps:
     - uses: actions/checkout@v4
