@@ -7,22 +7,28 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Configurar Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.11.9' # Especifique a versão do Python desejada
+      - name: Fazer checkout do código
+        uses: actions/checkout@v4
 
-    - name: Instalar dependências
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt # Instala as dependências listadas no seu requirements.txt
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
 
-    - name: Testar com pytest # Ou qualquer outro comando de teste que você use
-      run: |
-        pip install pytest
-        pytest
+      - name: Instalar dependências do projeto
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt || echo "Nenhum requirements.txt encontrado"
+
+      - name: Instalar pytest
+        run: pip install pytest
+
+      - name: Ajustar PYTHONPATH (corrige erro 'No module named app')
+        run: echo "PYTHONPATH=$(pwd)" >> $GITHUB_ENV
+
+      - name: Executar testes com pytest
+        run: pytest -v
