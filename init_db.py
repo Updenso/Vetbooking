@@ -4,7 +4,7 @@ def init_db():
     conn = mysql.connector.connect(
         host='localhost',
         user='root',
-        password='root@123',
+        password='root',
         database='vetbooking'
     )
     cursor = conn.cursor()
