@@ -22,7 +22,7 @@ class TestesSistema(unittest.TestCase):
         
         # 1. Acessar página inicial
         response = self.client.get('/')
-        self.assertEqual(response.status_code, 500)
+        self.assertEqual(response.status_code, 200)
         print("  ✓ Página inicial carregada")
         
         # 2. Navegar para login
